@@ -1,3 +1,4 @@
+from Models.Pred import Pred
 class Formula:
 	def __init__(self):
 		pass

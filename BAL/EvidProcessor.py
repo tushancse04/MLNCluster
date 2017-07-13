@@ -3,7 +3,7 @@ from collections import defaultdict
 class EvidProcessor:
 	def __init__(self):
 		pass
-	def ProcessEvidence(self,evidpath):
+	def GetAtoms(self,evidpath):
 		efile = open(evidpath)
 		atoms = {}
 		for atomString in efile:
@@ -12,4 +12,4 @@ class EvidProcessor:
 				atoms[atom.name] += [atom]
 			else:
 				atoms[atom.name] = [atom]
-		self.atoms = atoms
+		return atoms
