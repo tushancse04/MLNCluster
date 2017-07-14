@@ -19,6 +19,6 @@ for pred in feature_matrix:
 	features = []
 	for atom_value in feature_matrix[pred]:
 		features += [feature_matrix[pred][atom_value]]
-	features = features[0:10]
+
 	km = KModes()
 	km.Cluster(features)
