@@ -13,21 +13,24 @@ class FeatureGenerator:
 					if p1v == p2v:
 						self.AddFeature(atoms,pred1.name,i,pred2.name)
 						self.AddFeature(atoms,pred2.name,j,pred1.name)
+		return self.feature_matrix
 
 
 	def AddFeature(self, atoms, pred_name,pos, coupling_pred_name):
 		SN = self.GetPredShortName(coupling_pred_name)
 		for atom in atoms[pred_name]:
+			if atom.name not in self.feature_matrix:
+				self.feature_matrix[atom.name] = {}
+
 			if len(atom.values) == 1:
-				if (atom.name,atom.values[0]) in self.feature_matrix:
-					self.feature_matrix[(atom.name,atom.values[0])] += [SN + atom.values[pos]]
-				else:
-					self.feature_matrix[(atom.name,atom.values[0])] = [SN + atom.values[pos]]
+				if atom.values[0] not in self.feature_matrix[atom.name]:
+					self.feature_matrix[atom.name][atom.values[0]] = []
+				self.feature_matrix[atom.name][atom.values[0]] += [SN + atom.values[pos]]
 			else:
-				if (atom.name,atom.values[0],atom.values[1]) in self.feature_matrix:
-					self.feature_matrix[(atom.name,atom.values[0],atom.values[1])] += [SN + atom.values[pos]]
-				else:
-					self.feature_matrix[(atom.name,atom.values[0],atom.values[1])] = [SN + atom.values[pos]]
+				if (atom.values[0],atom.values[1]) not in self.feature_matrix[atom.name]:
+					self.feature_matrix[atom.name][(atom.values[0],atom.values[1])] = []
+				self.feature_matrix[atom.name][(atom.values[0],atom.values[1])] += [SN + atom.values[pos]]
+
 
 
 	def GetPredShortName(self,pred_name):
