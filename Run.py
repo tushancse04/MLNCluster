@@ -6,19 +6,19 @@ import numpy as np
 from kmodes import kmodes
 import numpy as np
 
+print('processing evid file...')
 ep = EvidProcessor()
-atoms = ep.GetAtoms("/home/localadmin/mominul/Cluster/Data/er/test-0.txt")
+atoms = ep.GetAtoms("/home/localadmin/mominul/Cluster/Data/er")
+
+print('processing mln file...')
 mp = MLNProcessor()
 predpairs = mp.GetPredPairs("/home/localadmin/mominul/Cluster/Data/er/mln.txt") 
+
+print('Generating features...')
 fg = FeatureGenerator()
 feature_matrix = fg.GenerateFeatureMatrix(atoms,predpairs)
-#for x in feature_matrix:
-#	print(x)
+CR = .5
+print('Generating cluster...')
+km = KModes()
+km.Cluster(feature_matrix,CR)
 
-for pred in feature_matrix:
-	features = []
-	for atom_value in feature_matrix[pred]:
-		features += [feature_matrix[pred][atom_value]]
-
-	km = KModes()
-	km.Cluster(features)
