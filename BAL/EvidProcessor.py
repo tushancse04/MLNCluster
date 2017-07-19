@@ -8,7 +8,7 @@ class EvidProcessor:
 		files = os.listdir(evidpath)
 		atoms = {}
 		for fname in files:
-			if not (fname.startswith('test') or fname.startswith('train')):
+			if not (fname.startswith('test')):
 				continue
 			efile = open(evidpath + "/" + fname)
 			for atomString in efile:

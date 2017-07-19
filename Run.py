@@ -8,11 +8,11 @@ import numpy as np
 
 print('processing evid file...')
 ep = EvidProcessor()
-atoms = ep.GetAtoms("/home/localadmin/mominul/Cluster/Data/er")
+atoms = ep.GetAtoms("/home/localadmin/mominul/Cluster/Data/webkb")
 
 print('processing mln file...')
 mp = MLNProcessor()
-predpairs = mp.GetPredPairs("/home/localadmin/mominul/Cluster/Data/er/mln.txt") 
+predpairs = mp.GetPredPairs("/home/localadmin/mominul/Cluster/Data/webkb/mln.txt") 
 
 print('Generating features...')
 fg = FeatureGenerator()

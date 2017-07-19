@@ -9,4 +9,5 @@ class MLNProcessor:
 			if formula.count(':') <= 1:
 				f = Formula()
 				PredPairs += f.GetPredPairs(formula)
+
 		return PredPairs
